@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Pikbloom — Your visuals, ready</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        /* ---- PREVIEW PAGE STYLES ---- */
+        .preview-hero {
+            padding: 140px 0 64px;
+            text-align: center;
+        }
+        .preview-hero .label { margin-bottom: 16px; }
+        .preview-hero h1 { margin-bottom: 16px; }
+        .preview-hero p {
+            color: var(--text-light);
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        /* Before: small, understated */
+        .before-section {
+            padding: 48px 0;
+        }
+        .before-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .before-grid img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            filter: saturate(0.7);
+            opacity: 0.85;
+        }
+
+        /* Source link */
+        .preview-source {
+            text-align: center;
+            padding: 12px 0 0;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
+        }
+        .preview-source a {
+            color: var(--text-light);
+            border-bottom: 1px solid var(--line);
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .preview-source a:hover {
+            color: var(--text);
+            border-color: var(--text);
+        }
+
+        /* Arrow divider */
+        .preview-divider {
+            text-align: center;
+            padding: 32px 0;
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-light);
+        }
+
+        /* After: carousel */
+        .after-section {
+            padding: 0 0 64px;
+        }
+
+        .carousel-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            gap: 0;
+        }
+        .carousel-track::-webkit-scrollbar { display: none; }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            aspect-ratio: 4 / 5;
+            scroll-snap-align: start;
+            overflow: hidden;
+            background: #ECEAE4;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 20px 0 0;
+        }
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--line);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: background 0.3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .carousel-dot.active {
+            background: var(--text);
+        }
+
+        /* Arrows */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--bg);
+            border: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text);
+            transition: background 0.3s, border-color 0.3s;
+            z-index: 2;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .carousel-arrow:hover {
+            border-color: var(--text);
+        }
+        .carousel-arrow.prev { left: -20px; }
+        .carousel-arrow.next { right: -20px; }
+
+        /* Slide counter */
+        .carousel-counter {
+            text-align: center;
+            padding: 8px 0 0;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            color: var(--text-light);
+        }
+
+        /* Caption */
+        .preview-caption {
+            text-align: center;
+            padding: 16px 0 0;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-light);
+        }
+
+        /* Stats bar */
+        .preview-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            text-align: center;
+            padding: 48px 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            max-width: 800px;
+            margin: 48px auto 0;
+        }
+        .preview-stats .stat-number {
+            font-size: 28px;
+        }
+
+        /* CTA */
+        .preview-cta {
+            background: var(--text);
+            color: var(--bg);
+            padding: 64px var(--pad);
+            text-align: center;
+        }
+        .preview-cta h2 { margin-bottom: 12px; }
+        .preview-cta p {
+            color: var(--text-light);
+            margin-bottom: 32px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .preview-cta .btn {
+            border-color: var(--bg);
+            color: var(--bg);
+        }
+        .preview-cta .btn::after { background: var(--bg); }
+        .preview-cta .btn:hover { color: var(--text); }
+
+        /* Footer minimal */
+        .preview-footer {
+            text-align: center;
+            padding: 32px var(--pad);
+            font-size: 11px;
+            color: var(--text-light);
+            letter-spacing: 0.1em;
+        }
+        .preview-footer a {
+            color: var(--text-light);
+            border-bottom: 1px solid var(--line);
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .preview-footer a:hover {
+            color: var(--text);
+            border-color: var(--text);
+        }
+
+        /* Mobile: hide arrows, swipe only */
+        .carousel-arrow { display: none; }
+
+        @media (min-width: 600px) {
+            .preview-hero { padding: 160px 0 80px; }
+            .carousel-wrapper { max-width: 500px; }
+            .carousel-arrow { display: flex; }
+            .before-grid { max-width: 900px; }
+            .preview-stats { max-width: 900px; }
+        }
+
+        @media (min-width: 1024px) {
+            .preview-hero { padding: 180px 0 80px; }
+            .preview-hero h1 { font-size: clamp(32px, 3.5vw, 48px); }
+            .carousel-wrapper { max-width: 600px; }
+            .before-grid { max-width: 1000px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV (minimal) -->
+    <nav>
+        <a href="../../index.html" class="nav-logo">Pikbloom</a>
+        <ul class="nav-links">
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../pricing.html">Pricing</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+            <li><a href="../../contact.html" class="btn btn-small"><span>Get a quote</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <div class="preview-hero">
+        <div class="container">
+            <div class="label reveal">Prepared for you</div>
+            <h1 class="reveal">We transformed your product photos.</h1>
+            <p class="reveal">Here's a preview of what your visuals could look like. These were created from your existing images — no shooting required.</p>
+        </div>
+    </div>
+
+    <!-- BEFORE -->
+    <section class="before-section">
+        <div class="container">
+            <div class="section-label reveal" style="text-align: center;">Your current photos</div>
+            <div class="before-grid reveal">
+                <img src="img/raw-1.jpg" alt="Original photo">
+                <img src="img/raw-2.jpg" alt="Original photo">
+                <img src="img/raw-3.jpg" alt="Original photo">
+            </div>
+            <div class="preview-source reveal">Photos from: <a href="https://www.example.com" target="_blank" rel="noopener">www.example.com</a></div>
+        </div>
+    </section>
+
+    <div class="preview-divider reveal">&darr; What we made &darr;</div>
+
+    <!-- AFTER -->
+    <section class="after-section">
+        <div class="container">
+            <div class="section-label reveal" style="text-align: center;">Your new visuals</div>
+
+            <!-- Carousel -->
+            <div class="carousel-wrapper reveal">
+                <div class="carousel-track" id="carousel">
+                    <div class="carousel-slide">
+                        <img src="img/after-1.png" alt="Packshot 3/4">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/after-2.png" alt="Packshot side">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/after-3.png" alt="Packshot front">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/after-4.png" alt="Packshot pair">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/after-5.png" alt="Model shot">
+                    </div>
+                </div>
+                <button class="carousel-arrow prev" id="carouselPrev">&larr;</button>
+                <button class="carousel-arrow next" id="carouselNext">&rarr;</button>
+                <div class="carousel-dots" id="carouselDots"></div>
+                <div class="carousel-counter"><span id="carouselCurrent">1</span> / <span id="carouselTotal">5</span></div>
+            </div>
+            <div class="preview-caption reveal">Packshots HD + model shot — swipe to browse</div>
+
+            <!-- Stats -->
+            <div class="preview-stats reveal">
+                <div>
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Visuals created</div>
+                </div>
+                <div>
+                    <div class="stat-number">48h</div>
+                    <div class="stat-label">Delivery time</div>
+                </div>
+                <div>
+                    <div class="stat-number">HD</div>
+                    <div class="stat-label">JPEG quality</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="preview-cta">
+        <h2 class="reveal">Like what you see?</h2>
+        <p class="reveal">We can do this for your entire catalogue. Let's talk.</p>
+        <div class="reveal">
+            <a href="mailto:hello@pikbloom.com" class="btn"><span>Get in touch</span></a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="preview-footer">
+        <a href="../../index.html">pikbloom.com</a> &mdash; Studio-quality visuals, delivered in 48h
+    </div>
+
+    <script src="../../script.js"></script>
+    <script>
+    (function() {
+        const track = document.getElementById('carousel');
+        const dotsContainer = document.getElementById('carouselDots');
+        const counter = document.getElementById('carouselCurrent');
+        const prevBtn = document.getElementById('carouselPrev');
+        const nextBtn = document.getElementById('carouselNext');
+        const slides = track.querySelectorAll('.carousel-slide');
+        const total = slides.length;
+        let current = 0;
+
+        // Create dots
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+        function goTo(index) {
+            current = index;
+            track.scrollTo({ left: track.offsetWidth * index, behavior: 'smooth' });
+            updateUI();
+        }
+
+        function updateUI() {
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+            counter.textContent = current + 1;
+        }
+
+        prevBtn.addEventListener('click', () => goTo(Math.max(0, current - 1)));
+        nextBtn.addEventListener('click', () => goTo(Math.min(total - 1, current + 1)));
+
+        // Sync dots on scroll/swipe
+        let scrollTimeout;
+        track.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const index = Math.round(track.scrollLeft / track.offsetWidth);
+                if (index !== current) {
+                    current = index;
+                    updateUI();
+                }
+            }, 50);
+        });
+    })();
+    </script>
+</body>
+</html>

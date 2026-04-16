@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pikbloom — Your product, in full bloom.</title>
+    <meta name="description" content="AI-powered product photography. We turn your existing photos into premium packshots and model shots. No shooting, no studio.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="index.html" class="nav-logo">Pikbloom</a>
+        <button class="nav-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cases.html">Cases</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html" class="btn btn-small"><span>Get a quote</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="label">AI-powered product photography</div>
+                <h1>Your existing photos.<br>Transformed into premium visuals.</h1>
+                <p class="large">We take your current product images and turn them into studio-quality packshots and model shots. No shooting. No studio. Delivered in 48 hours.</p>
+                <div class="hero-cta">
+                    <a href="contact.html" class="btn btn-filled"><span>Get a quote</span></a>
+                    <a href="pricing.html" class="btn"><span>View pricing</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEFORE / AFTER — THE CORE VALUE PROP -->
+    <section style="padding-top: 0;">
+        <div class="container">
+            <div class="section-label reveal">See the transformation</div>
+            <h2 class="reveal mb-m">One product. Endless possibilities.</h2>
+            <p class="reveal mb-l" style="color: var(--text-light);">
+                Send us what you have. We create what you need. Our AI-enhanced creative process transforms your existing product photos into visuals that sell.
+            </p>
+
+            <div class="transformer reveal">
+                <div class="transformer-tabs">
+                    <button class="transformer-tab active" data-target="packshot-to-worn">Packshot &rarr; Model</button>
+                    <button class="transformer-tab" data-target="worn-to-packshot">Model &rarr; Packshot</button>
+                    <button class="transformer-tab" data-target="raw-to-packshot">Raw &rarr; Packshot</button>
+                </div>
+
+                <!-- Pair 1: Packshot → Worn -->
+                <div class="transformer-pair active" data-pair="packshot-to-worn">
+                    <div class="transformer-side">
+                        <div class="transformer-side-label">Before</div>
+                        <div class="transformer-img">
+                            <img src="img/transformer/packshot-before.jpg" alt="Packshot">
+                        </div>
+                    </div>
+                    <div class="transformer-arrow">&rarr;</div>
+                    <div class="transformer-side">
+                        <div class="transformer-side-label">After</div>
+                        <div class="transformer-img">
+                            <img src="img/transformer/model-after.jpg" alt="Model shot">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pair 2: Worn → Packshot -->
+                <div class="transformer-pair" data-pair="worn-to-packshot">
+                    <div class="transformer-side">
+                        <div class="transformer-side-label">Before</div>
+                        <div class="transformer-img">
+                            <img src="img/transformer/model-before.jpg" alt="Model shot">
+                        </div>
+                    </div>
+                    <div class="transformer-arrow">&rarr;</div>
+                    <div class="transformer-side">
+                        <div class="transformer-side-label">After</div>
+                        <div class="transformer-img">
+                            <img src="img/transformer/packshot-after.jpg" alt="Packshot">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pair 3: Raw → Packshot -->
+                <div class="transformer-pair" data-pair="raw-to-packshot">
+                    <div class="transformer-side">
+                        <div class="transformer-side-label">Before</div>
+                        <div class="transformer-img">
+                            <img src="img/transformer/raw-before.jpg" alt="Raw photo">
+                        </div>
+                    </div>
+                    <div class="transformer-arrow">&rarr;</div>
+                    <div class="transformer-side">
+                        <div class="transformer-side-label">After</div>
+                        <div class="transformer-img">
+                            <img src="img/transformer/raw-after.jpg" alt="Packshot">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- HOW IT WORKS -->
+    <section>
+        <div class="container">
+            <div class="section-label reveal">How it works</div>
+            <h2 class="reveal mb-l">Three steps. That's it.</h2>
+
+            <div class="process-steps reveal-stagger">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <h3>Send your images</h3>
+                    <p>Share your product URLs, a folder of existing photos, or even raw smartphone shots. We work with what you have.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <h3>We create your visuals</h3>
+                    <p>Our AI-powered studio transforms your images into premium packshots and model shots. Fast, consistent, scalable.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <h3>Receive in 48h</h3>
+                    <p>Get your JPEG HD visuals ready to upload directly to your e-commerce platform. No retouching needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMMERSIVE DUO -->
+    <div class="immersive-duo reveal">
+        <div class="immersive-break">
+            <img src="img/immersive/sandal-detail.png" alt="Detail shot — silver sandal">
+            <div class="immersive-caption">Detail shot</div>
+        </div>
+        <div class="immersive-break">
+            <img src="img/immersive/boot-packshot.png" alt="Packshot — ankle boot">
+            <div class="immersive-caption">Packshot</div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- WHAT WE DELIVER -->
+    <section>
+        <div class="container">
+            <div class="section-label reveal">What we deliver</div>
+            <h2 class="reveal mb-m">Visuals that drive conversions.</h2>
+            <p class="reveal mb-l" style="color: var(--text-light);">
+                Every image is crafted to reassure your customer. They see the product. They see it worn. They buy.
+            </p>
+
+            <div class="features-grid reveal-stagger">
+                <div class="feature-card">
+                    <div class="feature-number">01</div>
+                    <h3>Packshots</h3>
+                    <p>Clean, neutral background product shots. Perfect for product pages, marketplaces, and catalogues.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">02</div>
+                    <h3>Model shots</h3>
+                    <p>Your product worn by a model in diverse environments. Lifestyle visuals that bring your product page to life.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">03</div>
+                    <h3>Multi-angle</h3>
+                    <p>Front, back, side, detail. Multiple angles from a single source image. Give your customers the full picture.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SHOWCASE -->
+    <section style="padding-top: 0;">
+        <div class="container">
+            <div class="section-label reveal">Portfolio</div>
+            <h2 class="reveal mb-l">Recent work.</h2>
+
+            <div class="portfolio-grid reveal">
+                <div class="portfolio-item">
+                    <img src="img/portfolio/shirt-model.jpg" alt="Shirt model shot">
+                    <div class="portfolio-label">Model shot &mdash; Shirt</div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portfolio/oxford-packshot.jpg" alt="Shirt packshot">
+                    <div class="portfolio-label">Packshot &mdash; Oxford Shirt</div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portfolio/jacket-packshot.jpg" alt="Jacket packshot">
+                    <div class="portfolio-label">Packshot &mdash; Hybrid Jacket</div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portfolio/printed-packshot.jpg" alt="Printed shirt packshot">
+                    <div class="portfolio-label">Packshot &mdash; Printed Shirt</div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portfolio/oxford-model.jpg" alt="Shirt model shot">
+                    <div class="portfolio-label">Model shot &mdash; Oxford Shirt</div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portfolio/beanie-packshot.jpg" alt="Beanie packshot">
+                    <div class="portfolio-label">Packshot &mdash; Accessory</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMMERSIVE FULL -->
+    <div class="immersive-break tall reveal">
+        <img src="img/immersive/sandal-full.png" alt="Silver heeled sandal">
+        <div class="immersive-caption">Studio-quality output</div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- STATS -->
+    <section>
+        <div class="container">
+            <div class="stats-row reveal-stagger">
+                <div>
+                    <div class="stat-number">48h</div>
+                    <div class="stat-label">Delivery time</div>
+                </div>
+                <div>
+                    <div class="stat-number">&euro;9.99</div>
+                    <div class="stat-label">Per visual</div>
+                </div>
+                <div>
+                    <div class="stat-number">HD</div>
+                    <div class="stat-label">JPEG quality</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- WHY PIKBLOOM -->
+    <section>
+        <div class="container">
+            <div class="section-label reveal">Why Pikbloom</div>
+            <h2 class="reveal mb-l">Built for brands that move fast.</h2>
+
+            <div class="features-grid reveal-stagger">
+                <div class="feature-card">
+                    <div class="feature-number">&darr;</div>
+                    <h3>No shooting required</h3>
+                    <p>Skip the studio, the photographer, the models. We work from your existing product images.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">&uarr;</div>
+                    <h3>Scale instantly</h3>
+                    <p>100 SKUs or 1,000. AI lets us handle volume without compromising quality.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">&check;</div>
+                    <h3>E-commerce ready</h3>
+                    <p>JPEG HD, properly sized, ready to upload. No post-production needed on your end.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMMERSIVE BREAK -->
+    <div class="immersive-break reveal">
+        <img src="img/immersive/derby-brown.png" alt="Brown leather derby">
+        <div class="immersive-caption">From raw to refined</div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <h2 class="reveal">Ready to make your products bloom?</h2>
+        <p class="reveal">Send us a few product images. We'll show you what's possible.</p>
+        <div class="reveal">
+            <a href="contact.html" class="btn"><span>Get in touch</span></a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="cases.html">Cases</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div>Pikbloom &mdash; 2026</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
