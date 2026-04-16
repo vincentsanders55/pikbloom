@@ -239,6 +239,175 @@
             .offer-carousel-wrapper { max-width: 100%; }
             .offer-header h2 { font-size: 24px; }
         }
+
+        /* ---- MOOD SECTION — DARK MODE ---- */
+        .mood-section {
+            background: #1A1A1A;
+            color: #F5F1E5;
+            padding: 100px 0 80px;
+            margin: 0;
+        }
+
+        .mood-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 var(--pad);
+        }
+
+        .mood-label {
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #9A9590;
+            margin-bottom: 16px;
+        }
+
+        .mood-header {
+            max-width: 640px;
+            margin-bottom: 64px;
+        }
+        .mood-header h2 {
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 300;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+            color: #F5F1E5;
+        }
+        .mood-header p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #9A9590;
+        }
+
+        /* Gallery — masonry-like grid */
+        .mood-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 72px;
+        }
+        .mood-gallery-item {
+            position: relative;
+            overflow: hidden;
+            background: #2A2A2A;
+        }
+        .mood-gallery-item img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .mood-gallery-item:hover img {
+            transform: scale(1.03);
+        }
+        .mood-gallery-item.mood-tall img {
+            aspect-ratio: 3 / 5;
+        }
+        .mood-img-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 16px;
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(245, 241, 229, 0.7);
+            background: linear-gradient(transparent, rgba(26, 26, 26, 0.8));
+        }
+
+        /* Features grid */
+        .mood-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            border-top: 1px solid #333;
+            margin-bottom: 72px;
+        }
+        .mood-feature {
+            padding: 28px 0;
+            border-bottom: 1px solid #333;
+        }
+        .mood-feature-title {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #F5F1E5;
+            margin-bottom: 6px;
+        }
+        .mood-feature-desc {
+            font-size: 12px;
+            line-height: 1.7;
+            color: #9A9590;
+        }
+
+        /* Pricing & CTA */
+        .mood-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .mood-pricing-label {
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #9A9590;
+            margin-bottom: 8px;
+        }
+        .mood-pricing-value {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: #F5F1E5;
+            margin-bottom: 12px;
+        }
+        .mood-pricing-note {
+            font-size: 12px;
+            line-height: 1.7;
+            color: #9A9590;
+            max-width: 460px;
+        }
+        .mood-btn {
+            border-color: #F5F1E5 !important;
+            color: #F5F1E5 !important;
+        }
+        .mood-btn::after {
+            background: #F5F1E5 !important;
+        }
+        .mood-btn:hover {
+            color: #1A1A1A !important;
+        }
+
+        /* Responsive — mood */
+        @media (min-width: 600px) {
+            .mood-gallery {
+                gap: 16px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .mood-section {
+                padding: 120px 0 100px;
+            }
+            .mood-features {
+                grid-template-columns: 1fr 1fr;
+                gap: 0 64px;
+            }
+            .mood-feature {
+                padding: 32px 0;
+            }
+            .mood-gallery {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 16px;
+            }
+            .mood-cta {
+                flex-direction: row;
+                align-items: flex-end;
+                justify-content: space-between;
+            }
+        }
     </style>
 </head>
 <body>
@@ -428,6 +597,69 @@
                     <div class="stat-label">JPEG quality</div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- MOOD OFFER — DARK MODE -->
+    <section class="mood-section">
+        <div class="mood-inner">
+
+            <div class="mood-header reveal">
+                <div class="mood-label">Premium offer</div>
+                <h2>Mood &amp; editorial photography.</h2>
+                <p>Beyond product pages. We create aspirational, atmospheric visuals that elevate your brand &mdash; campaign imagery, social content, lookbook shots, seasonal storytelling. The kind of photos that make people feel something.</p>
+            </div>
+
+            <!-- Mood gallery -->
+            <div class="mood-gallery reveal">
+                <div class="mood-gallery-item mood-tall">
+                    <img src="img/immersive/sandal-full.png" alt="Editorial mood shot">
+                    <div class="mood-img-caption">Campaign visual</div>
+                </div>
+                <div class="mood-gallery-item">
+                    <img src="img/immersive/derby-brown.png" alt="Lifestyle mood shot">
+                    <div class="mood-img-caption">Lifestyle editorial</div>
+                </div>
+                <div class="mood-gallery-item">
+                    <img src="img/immersive/boot-packshot.png" alt="Detail mood shot">
+                    <div class="mood-img-caption">Detail &amp; texture</div>
+                </div>
+                <div class="mood-gallery-item mood-tall">
+                    <img src="img/immersive/sandal-detail.png" alt="Close-up mood shot">
+                    <div class="mood-img-caption">Close-up storytelling</div>
+                </div>
+            </div>
+
+            <!-- What's included -->
+            <div class="mood-features reveal">
+                <div class="mood-feature">
+                    <div class="mood-feature-title">Concept &amp; art direction</div>
+                    <div class="mood-feature-desc">We define the mood, setting, and visual narrative based on your brand identity and campaign goals.</div>
+                </div>
+                <div class="mood-feature">
+                    <div class="mood-feature-title">Lifestyle &amp; editorial shots</div>
+                    <div class="mood-feature-desc">Aspirational imagery. Products in context &mdash; interiors, outdoor scenes, seasonal atmospheres, human presence.</div>
+                </div>
+                <div class="mood-feature">
+                    <div class="mood-feature-title">Social-ready formats</div>
+                    <div class="mood-feature-desc">Delivered in multiple formats optimized for Instagram, newsletters, website hero banners, and ads.</div>
+                </div>
+                <div class="mood-feature">
+                    <div class="mood-feature-title">Brand consistency</div>
+                    <div class="mood-feature-desc">Every visual follows your brand's tone. We match your existing visual language or help you create one.</div>
+                </div>
+            </div>
+
+            <!-- Pricing & CTA -->
+            <div class="mood-cta reveal">
+                <div class="mood-pricing">
+                    <div class="mood-pricing-label">Pricing</div>
+                    <div class="mood-pricing-value">On request</div>
+                    <div class="mood-pricing-note">Each project is unique. We scope and quote based on your creative brief, volume, and timeline.</div>
+                </div>
+                <a href="contact.html" class="btn mood-btn"><span>Discuss your project</span></a>
+            </div>
+
         </div>
     </section>
 
