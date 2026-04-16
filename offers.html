@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pikbloom — Our Offers</title>
+    <meta name="description" content="Discover our three core services: packshot creation, model shots, and raw-to-studio transformations. Premium product visuals, delivered fast.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ---- OFFERS PAGE ---- */
+
+        /* Offer tabs */
+        .offer-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 48px;
+            border-bottom: 1px solid var(--line);
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .offer-tabs::-webkit-scrollbar { display: none; }
+
+        .offer-tab {
+            font-family: var(--font);
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 14px 20px;
+            border: none;
+            background: none;
+            color: var(--text-light);
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+            white-space: nowrap;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .offer-tab:first-child { padding-left: 0; }
+        .offer-tab.active { color: var(--text); }
+        .offer-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: 0; right: 0;
+            height: 1px;
+            background: var(--text);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .offer-tab.active::after { transform: scaleX(1); }
+
+        /* Offer panels */
+        .offer-panel {
+            display: none;
+        }
+        .offer-panel.active {
+            display: block;
+        }
+
+        /* Offer layout */
+        .offer-layout {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .offer-header {
+            margin-bottom: 48px;
+        }
+        .offer-header h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .offer-header p {
+            color: var(--text-light);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* Offer highlights */
+        .offer-highlights {
+            display: flex;
+            gap: 24px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .offer-highlight {
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            color: var(--text);
+            padding: 6px 14px;
+            border: 1px solid var(--line);
+            white-space: nowrap;
+        }
+
+        /* Ideal for */
+        .offer-ideal {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: 16px;
+            line-height: 1.7;
+        }
+        .offer-ideal strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* Before block */
+        .offer-before {
+            margin-bottom: 48px;
+        }
+        .offer-before-label {
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+        .offer-before-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            max-width: 480px;
+        }
+        .offer-before-grid.single {
+            grid-template-columns: 1fr;
+            max-width: 240px;
+        }
+        .offer-before-grid img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            filter: saturate(0.7);
+            opacity: 0.8;
+        }
+
+        /* After block — carousel */
+        .offer-after-label {
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+
+        .offer-carousel-wrapper {
+            max-width: 480px;
+            position: relative;
+        }
+
+        .offer-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .offer-carousel::-webkit-scrollbar { display: none; }
+
+        .offer-slide {
+            flex: 0 0 100%;
+            aspect-ratio: 4 / 5;
+            scroll-snap-align: start;
+            overflow: hidden;
+            background: #ECEAE4;
+        }
+        .offer-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .offer-carousel-nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .offer-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .offer-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--line);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: background 0.3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .offer-dot.active { background: var(--text); }
+
+        .offer-counter {
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
+            margin-left: auto;
+        }
+
+        .offer-arrow {
+            width: 32px;
+            height: 32px;
+            background: none;
+            border: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--text);
+            transition: border-color 0.3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .offer-arrow:hover { border-color: var(--text); }
+
+        /* Side by side on desktop */
+        .offer-columns {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+        }
+
+        @media (min-width: 600px) {
+            .offer-before-grid { max-width: 400px; }
+            .offer-before-grid.single { max-width: 200px; }
+            .offer-carousel-wrapper { max-width: 400px; }
+        }
+
+        @media (min-width: 1024px) {
+            .offer-columns {
+                grid-template-columns: 1fr 1fr;
+                gap: 64px;
+                align-items: start;
+            }
+            .offer-before-grid { max-width: 100%; }
+            .offer-before-grid.single { max-width: 260px; }
+            .offer-carousel-wrapper { max-width: 100%; }
+            .offer-header h2 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="index.html" class="nav-logo">Pikbloom</a>
+        <button class="nav-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="offers.html">Offers</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html" class="btn btn-small"><span>Get a quote</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" style="min-height: auto; padding: 160px 0 80px;">
+        <div class="container">
+            <div class="hero-content" style="max-width: 640px;">
+                <div class="label">Our offers</div>
+                <h1>Three services. One goal: visuals that sell.</h1>
+                <p class="large" style="color: var(--text-light);">
+                    Whether you need model shots from a packshot, clean packshots from lifestyle photos, or a full upgrade from raw smartphone shots &mdash; we've got you covered.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- OFFERS -->
+    <section>
+        <div class="container">
+            <div class="offer-layout">
+
+                <!-- Tabs -->
+                <div class="offer-tabs reveal">
+                    <button class="offer-tab active" data-offer="packshot-to-model">Packshot &rarr; Model shot</button>
+                    <button class="offer-tab" data-offer="model-to-packshot">Model shot &rarr; Packshot</button>
+                    <button class="offer-tab" data-offer="raw-to-studio">Raw photo &rarr; Studio quality</button>
+                </div>
+
+                <!-- OFFER 1: Packshot → Model shot -->
+                <div class="offer-panel active reveal" data-panel="packshot-to-model">
+                    <div class="offer-header">
+                        <h2>From flat packshot to lifestyle model shot.</h2>
+                        <p>You already have clean product photos. We place your product on a model in a realistic setting &mdash; giving your customers the confidence to buy by seeing it worn.</p>
+                        <div class="offer-highlights">
+                            <span class="offer-highlight">Multiple styles per product</span>
+                            <span class="offer-highlight">Diverse models</span>
+                            <span class="offer-highlight">Custom backgrounds</span>
+                        </div>
+                        <div class="offer-ideal"><strong>Ideal for:</strong> Brands with packshots that need lifestyle visuals for product pages, social media, or ads.</div>
+                    </div>
+                    <div class="offer-columns">
+                        <div class="offer-before">
+                            <div class="offer-before-label">You send us &mdash; your packshot</div>
+                            <div class="offer-before-grid single">
+                                <img src="img/transformer/packshot-before.jpg" alt="Original packshot">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="offer-after-label">We deliver &mdash; model shots</div>
+                            <div class="offer-carousel-wrapper">
+                                <div class="offer-carousel" data-carousel="offer1">
+                                    <div class="offer-slide"><img src="img/cases/bf35-model-1.jpg" alt="Model shot 1"></div>
+                                    <div class="offer-slide"><img src="img/cases/bf35-model-2.jpg" alt="Model shot 2"></div>
+                                    <div class="offer-slide"><img src="img/cases/bf35-model-3.jpg" alt="Model shot 3"></div>
+                                    <div class="offer-slide"><img src="img/cases/bf35-model-4.jpg" alt="Model shot 4"></div>
+                                    <div class="offer-slide"><img src="img/cases/bf35-model-5.jpg" alt="Model shot 5"></div>
+                                </div>
+                                <div class="offer-carousel-nav">
+                                    <button class="offer-arrow" data-dir="prev">&larr;</button>
+                                    <div class="offer-dots"></div>
+                                    <div class="offer-counter"><span class="offer-current">1</span> / <span class="offer-total">5</span></div>
+                                    <button class="offer-arrow" data-dir="next">&rarr;</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OFFER 2: Model shot → Packshot -->
+                <div class="offer-panel" data-panel="model-to-packshot">
+                    <div class="offer-header">
+                        <h2>From model shot to clean, marketplace-ready packshot.</h2>
+                        <p>You have lifestyle or worn photos but need clean product-only visuals. We extract the product and create professional packshots on neutral backgrounds &mdash; ready for marketplaces, catalogues, and retailers.</p>
+                        <div class="offer-highlights">
+                            <span class="offer-highlight">White / neutral background</span>
+                            <span class="offer-highlight">Multiple angles</span>
+                            <span class="offer-highlight">Marketplace-compliant</span>
+                        </div>
+                        <div class="offer-ideal"><strong>Ideal for:</strong> Brands selling on marketplaces (Amazon, Zalando, About You) that require clean packshots but only have lifestyle photos.</div>
+                    </div>
+                    <div class="offer-columns">
+                        <div class="offer-before">
+                            <div class="offer-before-label">You send us &mdash; your model shot</div>
+                            <div class="offer-before-grid single">
+                                <img src="img/transformer/model-before.jpg" alt="Original model shot">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="offer-after-label">We deliver &mdash; clean packshots</div>
+                            <div class="offer-carousel-wrapper">
+                                <div class="offer-carousel" data-carousel="offer2">
+                                    <div class="offer-slide"><img src="img/cases/bf21-pack-a.jpg" alt="Packshot A"></div>
+                                    <div class="offer-slide"><img src="img/cases/bf21-pack-b.jpg" alt="Packshot B"></div>
+                                    <div class="offer-slide"><img src="img/cases/bf21-pack-c.jpg" alt="Packshot C"></div>
+                                </div>
+                                <div class="offer-carousel-nav">
+                                    <button class="offer-arrow" data-dir="prev">&larr;</button>
+                                    <div class="offer-dots"></div>
+                                    <div class="offer-counter"><span class="offer-current">1</span> / <span class="offer-total">3</span></div>
+                                    <button class="offer-arrow" data-dir="next">&rarr;</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OFFER 3: Raw → Studio quality -->
+                <div class="offer-panel" data-panel="raw-to-studio">
+                    <div class="offer-header">
+                        <h2>From raw smartphone photos to studio-quality visuals.</h2>
+                        <p>You don't have professional photos yet? No problem. Send us what you have &mdash; even phone shots &mdash; and we'll produce both clean packshots and model shots in one go.</p>
+                        <div class="offer-highlights">
+                            <span class="offer-highlight">Packshots + model shots</span>
+                            <span class="offer-highlight">Works from any source</span>
+                            <span class="offer-highlight">Full product page kit</span>
+                        </div>
+                        <div class="offer-ideal"><strong>Ideal for:</strong> New brands, small producers, or anyone launching products without a photography budget.</div>
+                    </div>
+                    <div class="offer-columns">
+                        <div class="offer-before">
+                            <div class="offer-before-label">You send us &mdash; raw phone photos</div>
+                            <div class="offer-before-grid">
+                                <img src="img/cases/raw-1.jpg" alt="Raw photo 1">
+                                <img src="img/cases/raw-2.jpg" alt="Raw photo 2">
+                                <img src="img/cases/raw-3.jpg" alt="Raw photo 3">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="offer-after-label">We deliver &mdash; packshots + model shots</div>
+                            <div class="offer-carousel-wrapper">
+                                <div class="offer-carousel" data-carousel="offer3">
+                                    <div class="offer-slide"><img src="img/cases/85502-01.png" alt="Packshot 3/4"></div>
+                                    <div class="offer-slide"><img src="img/cases/85502-02.png" alt="Packshot side"></div>
+                                    <div class="offer-slide"><img src="img/cases/85502-03.png" alt="Packshot front"></div>
+                                    <div class="offer-slide"><img src="img/cases/85502-04.png" alt="Packshot pair"></div>
+                                    <div class="offer-slide"><img src="img/cases/85502-05.png" alt="Model shot"></div>
+                                </div>
+                                <div class="offer-carousel-nav">
+                                    <button class="offer-arrow" data-dir="prev">&larr;</button>
+                                    <div class="offer-dots"></div>
+                                    <div class="offer-counter"><span class="offer-current">1</span> / <span class="offer-total">5</span></div>
+                                    <button class="offer-arrow" data-dir="next">&rarr;</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- STATS -->
+    <section>
+        <div class="container">
+            <div class="stats-row reveal-stagger">
+                <div>
+                    <div class="stat-number">Fast</div>
+                    <div class="stat-label">Delivery</div>
+                </div>
+                <div>
+                    <div class="stat-number">&euro;7.49</div>
+                    <div class="stat-label">From / visual</div>
+                </div>
+                <div>
+                    <div class="stat-number">HD</div>
+                    <div class="stat-label">JPEG quality</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <h2 class="reveal">Want to see your products transformed?</h2>
+        <p class="reveal">Send us a few images. We'll create sample visuals &mdash; free, no commitment.</p>
+        <div class="reveal">
+            <a href="contact.html" class="btn"><span>Get in touch</span></a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="offers.html">Offers</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div>Pikbloom &mdash; 2026</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+    (function() {
+        // Offer tabs
+        const offerTabs = document.querySelectorAll('.offer-tab');
+        const offerPanels = document.querySelectorAll('.offer-panel');
+
+        offerTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.offer;
+                offerTabs.forEach(t => t.classList.remove('active'));
+                offerPanels.forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.querySelector(`[data-panel="${target}"]`);
+                panel.classList.add('active');
+                panel.classList.add('visible');
+                // Reset carousel to first slide
+                const carousel = panel.querySelector('.offer-carousel');
+                if (carousel) carousel.scrollTo({ left: 0, behavior: 'instant' });
+            });
+        });
+
+        // Carousels
+        document.querySelectorAll('.offer-carousel-wrapper').forEach(wrapper => {
+            const track = wrapper.querySelector('.offer-carousel');
+            const slides = track.querySelectorAll('.offer-slide');
+            const dotsContainer = wrapper.querySelector('.offer-dots');
+            const counterEl = wrapper.querySelector('.offer-current');
+            const arrows = wrapper.querySelectorAll('.offer-arrow');
+            const total = slides.length;
+            let current = 0;
+
+            // Create dots
+            slides.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.classList.add('offer-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goTo(i));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = dotsContainer.querySelectorAll('.offer-dot');
+
+            function goTo(index) {
+                current = Math.max(0, Math.min(total - 1, index));
+                track.scrollTo({ left: track.offsetWidth * current, behavior: 'smooth' });
+                updateUI();
+            }
+
+            function updateUI() {
+                dots.forEach((d, i) => d.classList.toggle('active', i === current));
+                counterEl.textContent = current + 1;
+            }
+
+            arrows.forEach(arrow => {
+                arrow.addEventListener('click', () => {
+                    if (arrow.dataset.dir === 'prev') goTo(current - 1);
+                    else goTo(current + 1);
+                });
+            });
+
+            let scrollTimeout;
+            track.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    const index = Math.round(track.scrollLeft / track.offsetWidth);
+                    if (index !== current) {
+                        current = index;
+                        updateUI();
+                    }
+                }, 50);
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
