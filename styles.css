@@ -889,3 +889,53 @@ footer .footer-links a:hover { color: var(--text); }
 @media (min-width: 1400px) {
     :root { --pad: 80px; }
 }
+
+/* ============================================
+   LIGHTBOX
+   ============================================ */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    cursor: zoom-out;
+}
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+.lightbox img {
+    max-width: 92vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 3px;
+}
+.lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+.lightbox-close::before,
+.lightbox-close::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 1.5px;
+    background: #fff;
+}
+.lightbox-close::before { transform: translate(-50%, -50%) rotate(45deg); }
+.lightbox-close::after { transform: translate(-50%, -50%) rotate(-45deg); }

@@ -38,3 +38,30 @@ document.querySelectorAll('.nav-links a').forEach(a => {
     }
 });
 
+// Lightbox
+(function() {
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.innerHTML = '<button class="lightbox-close" aria-label="Close"></button><img>';
+    document.body.appendChild(lb);
+    const lbImg = lb.querySelector('img');
+
+    function open(src) {
+        lbImg.src = src;
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function close() {
+        lb.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.masonry-item img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => open(img.src));
+    });
+
+    lb.addEventListener('click', close);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
+
