@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pikbloom — Studio</title>
+    <meta name="description" content="Professional packshots, model shots, and editorial photography. Premium product visuals that drive sales, delivered fast.">
+    <link rel="icon" type="image/jpeg" href="Favicon.jpg">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ---- OFFERS PAGE ---- */
+
+        /* Offer tabs */
+        .offer-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            margin-bottom: 48px;
+            border-bottom: 1px solid var(--line);
+            position: sticky;
+            top: 60px;
+            background: var(--bg, #F5F1E5);
+            z-index: 90;
+            padding-top: 16px;
+            padding-bottom: 4px;
+        }
+
+        .offer-tab {
+            font-family: var(--font);
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 10px 16px;
+            border: none;
+            background: none;
+            color: var(--text-light);
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+            white-space: nowrap;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .offer-tab:first-child { padding-left: 0; }
+        .offer-tab.active { color: var(--text); }
+        .offer-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: 0; right: 0;
+            height: 1px;
+            background: var(--text);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .offer-tab.active::after { transform: scaleX(1); }
+
+        /* Offer panels */
+        .offer-panel {
+            display: none;
+        }
+        .offer-panel.active {
+            display: block;
+        }
+
+        /* Offer layout */
+        .offer-layout {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .offer-header {
+            margin-bottom: 48px;
+            max-width: 640px;
+        }
+        .offer-header h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .offer-header p {
+            color: var(--text-light);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* Offer highlights */
+        .offer-highlights {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .offer-highlight {
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            color: var(--text);
+            padding: 6px 14px;
+            border: 1px solid var(--line);
+            white-space: nowrap;
+        }
+
+        /* Ideal for */
+        .offer-ideal {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: 16px;
+            line-height: 1.7;
+        }
+        .offer-ideal strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* ---- GALLERY MASONRY (JS-positioned) ---- */
+        .masonry {
+            position: relative;
+        }
+
+        .masonry-item {
+            position: absolute;
+            overflow: hidden;
+            background: #ECEAE4;
+            border-radius: 3px;
+        }
+
+        .masonry-item img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .masonry-item.r-sq img { aspect-ratio: 1 / 1; }
+        .masonry-item.r-34 img { aspect-ratio: 3 / 4; }
+        .masonry-item.r-45 img { aspect-ratio: 4 / 5; }
+
+        .masonry-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .masonry-item-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 12px;
+            font-size: 9px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            background: rgba(245, 241, 229, 0.92);
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .masonry-item:hover .masonry-item-label {
+            transform: translateY(0);
+        }
+
+        @media (hover: none) {
+            .masonry-item .masonry-item-label {
+                transform: translateY(0);
+            }
+        }
+
+        /* Offer CTA */
+        .offer-cta {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .offer-cta-text {
+            font-size: 12px;
+            color: var(--text-light);
+            line-height: 1.7;
+            max-width: 400px;
+        }
+
+        @media (min-width: 600px) {
+            .offer-tabs {
+                flex-wrap: nowrap;
+            }
+            .offer-tab {
+                padding: 14px 20px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .offer-header h2 { font-size: 24px; }
+        }
+
+        /* ---- MOOD PANEL — DARK MODE ---- */
+
+        section.mood-active {
+            background: #1A1A1A;
+            transition: background 0.4s ease;
+        }
+
+        section.mood-active .offer-tabs {
+            border-bottom-color: #333;
+            background: #1A1A1A;
+        }
+        section.mood-active .offer-tab {
+            color: #9A9590;
+        }
+        section.mood-active .offer-tab.active {
+            color: #F5F1E5;
+        }
+        section.mood-active .offer-tab::after {
+            background: #F5F1E5;
+        }
+
+        .mood-content {
+            color: #F5F1E5;
+        }
+
+        .mood-content .offer-header {
+            max-width: 640px;
+        }
+        .mood-content .offer-header h2 {
+            color: #F5F1E5;
+        }
+        .mood-content .offer-header p {
+            color: #9A9590;
+        }
+
+        .mood-label {
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #9A9590;
+            margin-bottom: 16px;
+        }
+
+        .mood-slider {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 72px;
+            border-radius: 3px;
+        }
+        .mood-slider-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .mood-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        .mood-slide img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+        }
+        .mood-slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 20px;
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(245, 241, 229, 0.7);
+            background: linear-gradient(transparent, rgba(26, 26, 26, 0.8));
+        }
+        .mood-slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .mood-slider-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #555;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .mood-slider-dot.active {
+            background: #F5F1E5;
+        }
+
+        .mood-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            border-top: 1px solid #333;
+            margin-bottom: 72px;
+        }
+        .mood-feature {
+            padding: 28px 0;
+            border-bottom: 1px solid #333;
+        }
+        .mood-feature-title {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #F5F1E5;
+            margin-bottom: 6px;
+        }
+        .mood-feature-desc {
+            font-size: 12px;
+            line-height: 1.7;
+            color: #9A9590;
+        }
+
+        .mood-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .mood-pricing-label {
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #9A9590;
+            margin-bottom: 8px;
+        }
+        .mood-pricing-value {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: #F5F1E5;
+            margin-bottom: 12px;
+        }
+        .mood-pricing-note {
+            font-size: 12px;
+            line-height: 1.7;
+            color: #9A9590;
+            max-width: 460px;
+        }
+        .mood-btn {
+            border-color: #F5F1E5 !important;
+            color: #F5F1E5 !important;
+        }
+        .mood-btn::after {
+            background: #F5F1E5 !important;
+        }
+        .mood-btn:hover {
+            color: #1A1A1A !important;
+        }
+
+        @media (min-width: 1024px) {
+            .mood-features {
+                grid-template-columns: 1fr 1fr;
+                gap: 0 64px;
+            }
+            .mood-feature {
+                padding: 32px 0;
+            }
+            .mood-cta {
+                flex-direction: row;
+                align-items: flex-end;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="index.html" class="nav-logo">Pikbloom</a>
+        <button class="nav-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="studio.html">Studio</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html" class="btn btn-small"><span>Get a quote</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" style="min-height: auto; padding: 160px 0 80px;">
+        <div class="container">
+            <div class="hero-content" style="max-width: 640px;">
+                <div class="label">Our studio</div>
+                <h1>Three expertises. One goal: make your products shine.</h1>
+                <p class="large" style="color: var(--text-light);">
+                    Packshots, model shots, and editorial campaigns &mdash; premium product photography for a fraction of the cost of a traditional shoot.
+                </p>
+                <div style="margin-top: 20px; font-size: 11px; letter-spacing: 0.05em; color: var(--text-light);">
+                    Beautiful, coherent results &bull; Faithful to your product &bull; Refined until you love it
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- OFFERS -->
+    <section>
+        <div class="container">
+            <div class="offer-layout">
+
+                <!-- Tabs -->
+                <div class="offer-tabs reveal">
+                    <button class="offer-tab active" data-offer="packshot">Packshot</button>
+                    <button class="offer-tab" data-offer="model-shot">Model shot</button>
+                    <button class="offer-tab" data-offer="mood-editorial">Mood &amp; Editorial</button>
+                </div>
+
+                <!-- OFFER 1: Packshot -->
+                <div class="offer-panel active reveal" data-panel="packshot">
+                    <div class="offer-header">
+                        <h2>Studio-quality packshots for every product.</h2>
+                        <p>Clean, professional product photos on neutral backgrounds &mdash; ready for your website, marketplaces, and catalogues. Multiple angles, close-up details, and consistent lighting across your entire range.</p>
+                        <div class="offer-highlights">
+                            <span class="offer-highlight">Multiple angles</span>
+                            <span class="offer-highlight">Detail close-ups</span>
+                            <span class="offer-highlight">Neutral background</span>
+                            <span class="offer-highlight">Marketplace-ready</span>
+                            <span class="offer-highlight">Accurate colors &amp; textures</span>
+                        </div>
+                        <div class="offer-ideal"><strong>Ideal for:</strong> Product pages, catalogues, marketplaces (Amazon, Zalando), retailers, and wholesale lookbooks.</div>
+                    </div>
+
+                    <div class="masonry">
+                        <div class="masonry-item r-34">
+                            <img src="img/showcase/packshot/bag-cognac.jpg" alt="Cognac leather bag — 3/4 view">
+                            <div class="masonry-item-label">Bag &mdash; 3/4 view</div>
+                        </div>
+                        <div class="masonry-item r-34">
+                            <img src="img/showcase/packshot/shoe-pump.jpg" alt="Pump — 3/4 view">
+                            <div class="masonry-item-label">Pump &mdash; 3/4 view</div>
+                        </div>
+                        <div class="masonry-item r-sq">
+                            <img src="img/showcase/packshot/bag-cognac-detail.jpg" alt="Leather bag — clasp detail">
+                            <div class="masonry-item-label">Detail &mdash; Clasp &amp; grain</div>
+                        </div>
+                        <div class="masonry-item r-45">
+                            <img src="img/showcase/packshot/sandal-nude.jpg" alt="Nude sandal — front view">
+                            <div class="masonry-item-label">Sandal &mdash; Front</div>
+                        </div>
+                        <div class="masonry-item r-34">
+                            <img src="img/showcase/packshot/ring-signet-marble.jpg" alt="Gold signet ring on marble">
+                            <div class="masonry-item-label">Ring &mdash; Signet on marble</div>
+                        </div>
+                        <div class="masonry-item r-34">
+                            <img src="img/showcase/packshot/shoe-chelsea.jpg" alt="Chelsea boot — profile">
+                            <div class="masonry-item-label">Chelsea boot &mdash; Profile</div>
+                        </div>
+                        <div class="masonry-item r-34">
+                            <img src="img/showcase/packshot/bag-tote.jpg" alt="Tote bag — 3/4 view">
+                            <div class="masonry-item-label">Tote &mdash; 3/4 view</div>
+                        </div>
+                        <div class="masonry-item r-45">
+                            <img src="img/showcase/packshot/bracelet-gold.jpg" alt="Gold bracelet — front">
+                            <div class="masonry-item-label">Bracelet &mdash; Front</div>
+                        </div>
+                        <div class="masonry-item r-sq">
+                            <img src="img/showcase/packshot/shoe-sandal-detail.jpg" alt="Sandal strap — detail">
+                            <div class="masonry-item-label">Sandal &mdash; Strap detail</div>
+                        </div>
+                        <div class="masonry-item r-34">
+                            <img src="img/showcase/packshot/bag-burgundy-detail.jpg" alt="Burgundy bag — texture">
+                            <div class="masonry-item-label">Bag &mdash; Texture detail</div>
+                        </div>
+                        <div class="masonry-item r-45">
+                            <img src="img/showcase/packshot/ring-signet-wide.jpg" alt="Gold signet ring — wide shot">
+                            <div class="masonry-item-label">Ring &mdash; Editorial</div>
+                        </div>
+                        <div class="masonry-item r-34">
+                            <img src="img/showcase/packshot/bracelet-chain-gold.jpg" alt="Gold chain bracelet">
+                            <div class="masonry-item-label">Bracelet &mdash; Chain</div>
+                        </div>
+                        <div class="masonry-item r-34">
+                            <img src="img/showcase/packshot/bag-cognac-rear.jpg" alt="Cognac bag — rear view">
+                            <div class="masonry-item-label">Bag &mdash; Rear view</div>
+                        </div>
+                        <div class="masonry-item r-45">
+                            <img src="img/showcase/packshot/sandal-nude-heeled.jpg" alt="Nude heeled sandal — profile">
+                            <div class="masonry-item-label">Sandal &mdash; Heeled</div>
+                        </div>
+                        <div class="masonry-item r-sq">
+                            <img src="img/showcase/packshot/bracelet-gold-cuff.jpg" alt="Gold cuff bracelet — top view">
+                            <div class="masonry-item-label">Bracelet &mdash; Cuff</div>
+                        </div>
+                        <div class="masonry-item r-45">
+                            <img src="img/showcase/packshot/bracelet-gold-detail.jpg" alt="Gold bracelet — macro detail">
+                            <div class="masonry-item-label">Bracelet &mdash; Macro</div>
+                        </div>
+                    </div>
+
+                    <div class="offer-cta">
+                        <div class="offer-cta-text">
+                            We create sample packshots of your products for free. See the quality before you commit.
+                        </div>
+                        <a href="contact.html" class="btn btn-small"><span>Get a free sample</span></a>
+                    </div>
+                </div>
+
+                <!-- OFFER 2: Model shot -->
+                <div class="offer-panel" data-panel="model-shot">
+                    <div class="offer-header">
+                        <h2>Your product, worn by a model.</h2>
+                        <p>Realistic model shots that give your customers the confidence to buy. We place your product on a model in a studio setting &mdash; natural poses, diverse body types, premium editorial feel.</p>
+                        <div class="offer-highlights">
+                            <span class="offer-highlight">Multiple poses</span>
+                            <span class="offer-highlight">Close-up &amp; full body</span>
+                            <span class="offer-highlight">Diverse models</span>
+                            <span class="offer-highlight">Studio setting</span>
+                            <span class="offer-highlight">Natural, realistic result</span>
+                        </div>
+                        <div class="offer-ideal"><strong>Ideal for:</strong> Product pages, social media, ads, newsletters, and any touchpoint where seeing the product worn drives conversion.</div>
+                    </div>
+
+                    <div class="masonry">
+                        <div class="masonry-item r-34">
+                            <img src="img/showcase/model/model-bag-cognac.jpg" alt="Model wearing cognac bag">
+                            <div class="masonry-item-label">Bag &mdash; Full body</div>
+                        </div>
+                        <div class="masonry-item r-45">
+                            <img src="img/showcase/model/model-sandal-nude.jpg" alt="Model wearing nude sandals">
+                            <div class="masonry-item-label">Sandal &mdash; Full body</div>
+                        </div>
+                        <div class="masonry-item r-sq">
+                            <img src="img/showcase/model/model-bracelet-gold.jpg" alt="Model wearing gold bracelet">
+                            <div class="masonry-item-label">Bracelet &mdash; Wrist</div>
+                        </div>
+                        <div class="masonry-item r-45">
+                            <img src="img/showcase/model/model-bag-cognac-closeup.jpg" alt="Close-up bag on model">
+                            <div class="masonry-item-label">Bag &mdash; Close-up</div>
+                        </div>
+                        <div class="masonry-item r-34">
+                            <img src="img/showcase/model/model-sandal-seated.jpg" alt="Seated model with sandals">
+                            <div class="masonry-item-label">Sandal &mdash; Seated pose</div>
+                        </div>
+                        <div class="masonry-item r-sq">
+                            <img src="img/showcase/model/model-bracelet-hand.jpg" alt="Bracelet on hand close-up">
+                            <div class="masonry-item-label">Bracelet &mdash; Hand detail</div>
+                        </div>
+                        <div class="masonry-item r-34">
+                            <img src="img/showcase/model/model-sandal-feet.jpg" alt="Sandal on feet detail">
+                            <div class="masonry-item-label">Sandal &mdash; Feet detail</div>
+                        </div>
+                    </div>
+
+                    <div class="offer-cta">
+                        <div class="offer-cta-text">
+                            Send us a product photo. We'll create a model shot for free &mdash; so you can see the result before you commit.
+                        </div>
+                        <a href="contact.html" class="btn btn-small"><span>Get a free sample</span></a>
+                    </div>
+                </div>
+
+                <!-- OFFER 3: Mood & Editorial — DARK -->
+                <div class="offer-panel" data-panel="mood-editorial">
+                    <div class="mood-content">
+
+                        <div class="offer-header">
+                            <div class="mood-label">Premium studio</div>
+                            <h2>Mood &amp; editorial photography.</h2>
+                            <p>Beyond product pages. We create aspirational, atmospheric visuals that elevate your brand &mdash; campaign imagery, social content, lookbook shots, seasonal storytelling. The kind of photos that make people feel something.</p>
+                        </div>
+
+                        <div class="mood-slider">
+                            <div class="mood-slider-track">
+                                <div class="mood-slide">
+                                    <img src="img/immersive/sandal-full.jpg" alt="Editorial mood shot">
+                                    <div class="mood-slide-caption">Campaign visual</div>
+                                </div>
+                                <div class="mood-slide">
+                                    <img src="img/immersive/derby-brown.jpg" alt="Lifestyle mood shot">
+                                    <div class="mood-slide-caption">Lifestyle editorial</div>
+                                </div>
+                                <div class="mood-slide">
+                                    <img src="img/immersive/boot-packshot.jpg" alt="Detail mood shot">
+                                    <div class="mood-slide-caption">Detail &amp; texture</div>
+                                </div>
+                                <div class="mood-slide">
+                                    <img src="img/immersive/sandal-detail.jpg" alt="Close-up mood shot">
+                                    <div class="mood-slide-caption">Close-up storytelling</div>
+                                </div>
+                            </div>
+                            <div class="mood-slider-dots"></div>
+                        </div>
+
+                        <div class="mood-features">
+                            <div class="mood-feature">
+                                <div class="mood-feature-title">Concept &amp; art direction</div>
+                                <div class="mood-feature-desc">We define the mood, setting, and visual narrative based on your brand identity and campaign goals.</div>
+                            </div>
+                            <div class="mood-feature">
+                                <div class="mood-feature-title">Lifestyle &amp; editorial shots</div>
+                                <div class="mood-feature-desc">Aspirational imagery. Products in context &mdash; interiors, outdoor scenes, seasonal atmospheres, human presence.</div>
+                            </div>
+                            <div class="mood-feature">
+                                <div class="mood-feature-title">Social-ready formats</div>
+                                <div class="mood-feature-desc">Delivered in multiple formats optimized for Instagram, newsletters, website hero banners, and ads.</div>
+                            </div>
+                            <div class="mood-feature">
+                                <div class="mood-feature-title">Brand consistency</div>
+                                <div class="mood-feature-desc">Every visual follows your brand's tone. We match your existing visual language or help you create one.</div>
+                            </div>
+                        </div>
+
+                        <div class="mood-cta">
+                            <div class="mood-pricing">
+                                <div class="mood-pricing-label">Pricing</div>
+                                <div class="mood-pricing-value">On request</div>
+                                <div class="mood-pricing-note">Each project is unique. We scope and quote based on your creative brief, volume, and timeline.</div>
+                            </div>
+                            <a href="contact.html" class="btn mood-btn"><span>Discuss your project</span></a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- STATS -->
+    <section>
+        <div class="container">
+            <div class="stats-row reveal-stagger">
+                <div>
+                    <div class="stat-number">Fast</div>
+                    <div class="stat-label">Delivery</div>
+                </div>
+                <div>
+                    <div class="stat-number">&euro;7.49</div>
+                    <div class="stat-label">From / visual</div>
+                </div>
+                <div>
+                    <div class="stat-number">HD</div>
+                    <div class="stat-label">JPEG quality</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <h2 class="reveal">Want to see your products at their best?</h2>
+        <p class="reveal">Tell us about your catalogue. We'll create sample visuals &mdash; free, no commitment.</p>
+        <div class="reveal">
+            <a href="contact.html" class="btn"><span>Get in touch</span></a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="studio.html">Studio</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div>Pikbloom &mdash; 2026</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+    (function() {
+        // Offer tabs
+        const offerTabs = document.querySelectorAll('.offer-tab');
+        const offerPanels = document.querySelectorAll('.offer-panel');
+        const offerSection = document.querySelector('.offer-layout').closest('section');
+
+        offerTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.offer;
+                offerTabs.forEach(t => t.classList.remove('active'));
+                offerPanels.forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.querySelector(`[data-panel="${target}"]`);
+                panel.classList.add('active');
+                panel.classList.add('visible');
+
+                if (target === 'mood-editorial') {
+                    offerSection.classList.add('mood-active');
+                } else {
+                    offerSection.classList.remove('mood-active');
+                }
+
+                // Re-layout masonry in new panel
+                setTimeout(() => layoutAll(), 50);
+            });
+        });
+
+        // Masonry layout
+        const GAP = 2;
+
+        function layoutMasonry(container) {
+            const items = container.querySelectorAll('.masonry-item');
+            if (!items.length) return;
+
+            const cols = window.innerWidth >= 1024 ? 3 : 2;
+            const containerW = container.offsetWidth;
+            const colW = (containerW - GAP * (cols - 1)) / cols;
+            const colHeights = new Array(cols).fill(0);
+
+            items.forEach(item => {
+                // Find shortest column
+                const col = colHeights.indexOf(Math.min(...colHeights));
+                const x = col * (colW + GAP);
+                const y = colHeights[col];
+
+                item.style.width = colW + 'px';
+                item.style.left = x + 'px';
+                item.style.top = y + 'px';
+
+                colHeights[col] += item.offsetHeight + GAP;
+            });
+
+            container.style.height = Math.max(...colHeights) + 'px';
+        }
+
+        function layoutAll() {
+            document.querySelectorAll('.masonry').forEach(layoutMasonry);
+        }
+
+        // Wait for images then layout
+        function onReady() {
+            const images = document.querySelectorAll('.masonry-item img');
+            let loaded = 0;
+            const total = images.length;
+
+            function check() {
+                loaded++;
+                if (loaded >= total) layoutAll();
+            }
+
+            images.forEach(img => {
+                if (img.complete) check();
+                else img.addEventListener('load', check);
+            });
+
+            if (total === 0) layoutAll();
+        }
+
+        onReady();
+        window.addEventListener('resize', layoutAll);
+    })();
+
+    // Mood slider
+    (function() {
+        const slider = document.querySelector('.mood-slider');
+        if (!slider) return;
+        const track = slider.querySelector('.mood-slider-track');
+        const slides = slider.querySelectorAll('.mood-slide');
+        const dotsContainer = slider.querySelector('.mood-slider-dots');
+        let current = 0;
+        let interval;
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'mood-slider-dot' + (i === 0 ? ' active' : '');
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        function goTo(index) {
+            current = index;
+            track.style.transform = 'translateX(-' + (current * 100) + '%)';
+            dotsContainer.querySelectorAll('.mood-slider-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === current);
+            });
+        }
+
+        function next() {
+            goTo((current + 1) % slides.length);
+        }
+
+        function startAuto() {
+            interval = setInterval(next, 4000);
+        }
+
+        slider.addEventListener('mouseenter', () => clearInterval(interval));
+        slider.addEventListener('mouseleave', startAuto);
+
+        startAuto();
+    })();
+    </script>
+</body>
+</html>

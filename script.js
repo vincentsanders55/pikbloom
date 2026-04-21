@@ -38,22 +38,3 @@ document.querySelectorAll('.nav-links a').forEach(a => {
     }
 });
 
-// Transformer tabs (before/after)
-const tabs = document.querySelectorAll('.transformer-tab');
-const pairs = document.querySelectorAll('.transformer-pair');
-
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        const target = tab.dataset.target;
-
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-
-        pairs.forEach(p => {
-            p.classList.remove('active');
-            if (p.dataset.pair === target) {
-                p.classList.add('active');
-            }
-        });
-    });
-});

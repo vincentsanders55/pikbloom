@@ -4,8 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pikbloom — Your product, in full bloom.</title>
-    <meta name="description" content="AI-powered product photography. We turn your existing photos into premium packshots and model shots. No shooting, no studio.">
+    <meta name="description" content="Premium product photography, without the photoshoot. Studio-quality packshots and model shots for a fraction of the cost. Delivered in 48 hours.">
+    <link rel="icon" type="image/jpeg" href="Favicon.jpg">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .masonry { position: relative; }
+        .masonry-item { position: absolute; overflow: hidden; background: #ECEAE4; border-radius: 3px; }
+        .masonry-item img { width: 100%; display: block; object-fit: cover; transition: transform 0.6s ease; }
+        .masonry-item:hover img { transform: scale(1.03); }
+        .masonry-item.r-sq img { aspect-ratio: 1 / 1; }
+        .masonry-item.r-34 img { aspect-ratio: 3 / 4; }
+        .masonry-item.r-45 img { aspect-ratio: 4 / 5; }
+        .masonry-item-label {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 10px 12px; font-size: 9px; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--text-light);
+            background: rgba(245, 241, 229, 0.92);
+            transform: translateY(100%); transition: transform 0.3s;
+        }
+        .masonry-item:hover .masonry-item-label { transform: translateY(0); }
+        @media (hover: none) { .masonry-item .masonry-item-label { transform: translateY(0); } }
+    </style>
 </head>
 <body>
 
@@ -17,7 +36,7 @@
         </button>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="offers.html">Offers</a></li>
+            <li><a href="studio.html">Studio</a></li>
             <li><a href="pricing.html">Pricing</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="contact.html" class="btn btn-small"><span>Get a quote</span></a></li>
@@ -28,83 +47,58 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="label">AI-powered product photography</div>
-                <h1>Your existing photos.<br>Transformed into premium visuals.</h1>
-                <p class="large">We take your current product images and turn them into studio-quality packshots and model shots. No shooting. No studio. Delivered in 48 hours.</p>
+                <div class="label">Product photography, reinvented</div>
+                <h1>Premium visuals for your products.<br>A fraction of the cost.</h1>
+                <p class="large">Studio-quality packshots and model shots, delivered in 48 hours. No photographer, no studio, no logistics. Just beautiful product visuals that drive sales.</p>
                 <div class="hero-cta">
                     <a href="contact.html" class="btn btn-filled"><span>Get a quote</span></a>
                     <a href="pricing.html" class="btn"><span>View pricing</span></a>
+                </div>
+                <div style="margin-top: 20px; font-size: 11px; letter-spacing: 0.05em; color: var(--text-light);">
+                    Try it free &mdash; we create sample visuals of your products before you commit.
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- BEFORE / AFTER — THE CORE VALUE PROP -->
+    <!-- SHOWCASE — THE CORE VALUE PROP -->
     <section style="padding-top: 0;">
         <div class="container">
-            <div class="section-label reveal">See the transformation</div>
+            <div class="section-label reveal">See the result</div>
             <h2 class="reveal mb-m">One product. Endless possibilities.</h2>
             <p class="reveal mb-l" style="color: var(--text-light);">
-                Send us what you have. We create what you need. Our AI-enhanced creative process transforms your existing product photos into visuals that sell.
+                Packshots, model shots, detail close-ups &mdash; we create the full range of product imagery your e-commerce needs. For a fraction of what a traditional shoot costs.
             </p>
 
-            <div class="transformer reveal">
-                <div class="transformer-tabs">
-                    <button class="transformer-tab active" data-target="packshot-to-worn">Packshot &rarr; Model</button>
-                    <button class="transformer-tab" data-target="worn-to-packshot">Model &rarr; Packshot</button>
-                    <button class="transformer-tab" data-target="raw-to-packshot">Raw &rarr; Packshot</button>
+            <div class="masonry reveal">
+                <div class="masonry-item r-34">
+                    <img src="img/showcase/packshot/bag-cognac.jpg" alt="Leather bag packshot">
+                    <div class="masonry-item-label">Packshot &mdash; Bag</div>
                 </div>
+                <div class="masonry-item r-45">
+                    <img src="img/showcase/model/model-bag-cognac.jpg" alt="Model wearing leather bag">
+                    <div class="masonry-item-label">Model shot &mdash; Bag</div>
+                </div>
+                <div class="masonry-item r-sq">
+                    <img src="img/showcase/packshot/sandal-nude.jpg" alt="Nude sandal packshot">
+                    <div class="masonry-item-label">Packshot &mdash; Sandal</div>
+                </div>
+                <div class="masonry-item r-34">
+                    <img src="img/showcase/model/model-sandal-nude.jpg" alt="Model wearing sandal">
+                    <div class="masonry-item-label">Model shot &mdash; Sandal</div>
+                </div>
+                <div class="masonry-item r-45">
+                    <img src="img/showcase/packshot/bracelet-gold.jpg" alt="Gold bracelet packshot">
+                    <div class="masonry-item-label">Packshot &mdash; Bracelet</div>
+                </div>
+                <div class="masonry-item r-sq">
+                    <img src="img/showcase/model/model-bracelet-gold.jpg" alt="Model wearing bracelet">
+                    <div class="masonry-item-label">Model shot &mdash; Bracelet</div>
+                </div>
+            </div>
 
-                <!-- Pair 1: Packshot → Worn -->
-                <div class="transformer-pair active" data-pair="packshot-to-worn">
-                    <div class="transformer-side">
-                        <div class="transformer-side-label">Before</div>
-                        <div class="transformer-img">
-                            <img src="img/transformer/packshot-before.jpg" alt="Packshot">
-                        </div>
-                    </div>
-                    <div class="transformer-arrow">&rarr;</div>
-                    <div class="transformer-side">
-                        <div class="transformer-side-label">After</div>
-                        <div class="transformer-img">
-                            <img src="img/transformer/model-after.jpg" alt="Model shot">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pair 2: Worn → Packshot -->
-                <div class="transformer-pair" data-pair="worn-to-packshot">
-                    <div class="transformer-side">
-                        <div class="transformer-side-label">Before</div>
-                        <div class="transformer-img">
-                            <img src="img/transformer/model-before.jpg" alt="Model shot">
-                        </div>
-                    </div>
-                    <div class="transformer-arrow">&rarr;</div>
-                    <div class="transformer-side">
-                        <div class="transformer-side-label">After</div>
-                        <div class="transformer-img">
-                            <img src="img/transformer/packshot-after.jpg" alt="Packshot">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pair 3: Raw → Packshot -->
-                <div class="transformer-pair" data-pair="raw-to-packshot">
-                    <div class="transformer-side">
-                        <div class="transformer-side-label">Before</div>
-                        <div class="transformer-img">
-                            <img src="img/transformer/raw-before.jpg" alt="Raw photo">
-                        </div>
-                    </div>
-                    <div class="transformer-arrow">&rarr;</div>
-                    <div class="transformer-side">
-                        <div class="transformer-side-label">After</div>
-                        <div class="transformer-img">
-                            <img src="img/transformer/raw-after.jpg" alt="Packshot">
-                        </div>
-                    </div>
-                </div>
+            <div class="reveal" style="margin-top: 48px; text-align: center;">
+                <a href="studio.html" class="btn"><span>Explore our studio</span></a>
             </div>
         </div>
     </section>
@@ -138,13 +132,13 @@
             <div class="process-steps reveal-stagger">
                 <div class="process-step">
                     <div class="step-number">01</div>
-                    <h3>Send your images</h3>
-                    <p>Share your product URLs, a folder of existing photos, or even raw smartphone shots. We work with what you have.</p>
+                    <h3>Share your products</h3>
+                    <p>A product URL, a few photos, or even a simple description. We adapt to whatever you have available.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">02</div>
                     <h3>We create your visuals</h3>
-                    <p>Our AI-powered studio transforms your images into premium packshots and model shots. Fast, consistent, scalable.</p>
+                    <p>Our studio produces premium packshots and model shots for your products. Beautiful, consistent, ready to sell.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">03</div>
@@ -158,12 +152,12 @@
     <!-- IMMERSIVE DUO -->
     <div class="immersive-duo reveal">
         <div class="immersive-break">
-            <img src="img/immersive/sandal-detail.png" alt="Detail shot — silver sandal">
-            <div class="immersive-caption">Detail shot</div>
+            <img src="img/showcase/packshot/shoe-pump.jpg" alt="Red pump — packshot">
+            <div class="immersive-caption">Packshot</div>
         </div>
         <div class="immersive-break">
-            <img src="img/immersive/boot-packshot.png" alt="Packshot — ankle boot">
-            <div class="immersive-caption">Packshot</div>
+            <img src="img/showcase/model/model-bracelet-cuff.jpg" alt="Gold cuff bracelet — worn">
+            <div class="immersive-caption">Model shot</div>
         </div>
     </div>
 
@@ -198,45 +192,11 @@
         </div>
     </section>
 
-    <!-- PORTFOLIO SHOWCASE -->
-    <section style="padding-top: 0;">
-        <div class="container">
-            <div class="section-label reveal">Portfolio</div>
-            <h2 class="reveal mb-l">Recent work.</h2>
-
-            <div class="portfolio-grid reveal">
-                <div class="portfolio-item">
-                    <img src="img/portfolio/shirt-model.jpg" alt="Shirt model shot">
-                    <div class="portfolio-label">Model shot &mdash; Shirt</div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="img/portfolio/oxford-packshot.jpg" alt="Shirt packshot">
-                    <div class="portfolio-label">Packshot &mdash; Oxford Shirt</div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="img/portfolio/jacket-packshot.jpg" alt="Jacket packshot">
-                    <div class="portfolio-label">Packshot &mdash; Hybrid Jacket</div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="img/portfolio/printed-packshot.jpg" alt="Printed shirt packshot">
-                    <div class="portfolio-label">Packshot &mdash; Printed Shirt</div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="img/portfolio/oxford-model.jpg" alt="Shirt model shot">
-                    <div class="portfolio-label">Model shot &mdash; Oxford Shirt</div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="img/portfolio/beanie-packshot.jpg" alt="Beanie packshot">
-                    <div class="portfolio-label">Packshot &mdash; Accessory</div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- IMMERSIVE FULL -->
     <div class="immersive-break tall reveal">
-        <img src="img/immersive/sandal-full.png" alt="Silver heeled sandal">
-        <div class="immersive-caption">Studio-quality output</div>
+        <img src="img/showcase/model/model-bag-cognac.jpg" alt="Model wearing cognac bag — studio shot">
+        <div class="immersive-caption">Studio-quality model shot</div>
     </div>
 
     <div class="section-divider"></div>
@@ -250,18 +210,18 @@
             <div class="features-grid reveal-stagger">
                 <div class="feature-card">
                     <div class="feature-number">&darr;</div>
-                    <h3>No shooting required</h3>
-                    <p>Skip the studio, the photographer, the models. We work from your existing product images.</p>
+                    <h3>90% less than a traditional shoot</h3>
+                    <p>No photographer, no studio rental, no model agency fees. Premium visuals at a price that makes sense for every SKU in your catalogue.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-number">&uarr;</div>
-                    <h3>Scale instantly</h3>
-                    <p>100 SKUs or 1,000. AI lets us handle volume without compromising quality.</p>
+                    <h3>Beautiful at scale</h3>
+                    <p>Whether it's 10 products or 1,000 &mdash; every visual is crafted with the same care. Your catalogue looks cohesive, polished, and premium from end to end.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-number">&check;</div>
-                    <h3>E-commerce ready</h3>
-                    <p>JPEG HD, properly sized, ready to upload. No post-production needed on your end.</p>
+                    <h3>True to your product</h3>
+                    <p>Colors, textures, proportions &mdash; we obsess over accuracy. What your customer sees online is exactly what they'll receive.</p>
                 </div>
             </div>
         </div>
@@ -269,14 +229,42 @@
 
     <!-- IMMERSIVE BREAK -->
     <div class="immersive-break reveal">
-        <img src="img/immersive/derby-brown.png" alt="Brown leather derby">
-        <div class="immersive-caption">From raw to refined</div>
+        <img src="img/showcase/model/model-bracelet-hand.jpg" alt="Gold bracelet worn — close-up">
+        <div class="immersive-caption">Jewelry, beautifully worn</div>
     </div>
+
+    <div class="section-divider"></div>
+
+    <!-- QUALITY PROMISE -->
+    <section>
+        <div class="container">
+            <div class="section-label reveal">Our commitment</div>
+            <h2 class="reveal mb-l">Visuals you'll be proud to publish.</h2>
+
+            <div class="features-grid reveal-stagger">
+                <div class="feature-card">
+                    <div class="feature-number">01</div>
+                    <h3>See it on your products first</h3>
+                    <p>Before you pay, we create sample visuals of your products. You judge the result on items you know inside out &mdash; no risk, no commitment.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">02</div>
+                    <h3>Faithful to reality</h3>
+                    <p>We preserve what makes your product unique &mdash; the right shade of leather, the exact drape of fabric, the true shine of metal. No distortion, no artistic license on your product.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">03</div>
+                    <h3>Refined until you're happy</h3>
+                    <p>Something feels off? We adjust. Framing, background, styling, model &mdash; we iterate until every visual feels right to you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- CTA -->
     <div class="cta-section">
         <h2 class="reveal">Ready to make your products bloom?</h2>
-        <p class="reveal">Send us a few product images. We'll show you what's possible.</p>
+        <p class="reveal">Tell us about your products. We'll show you what's possible &mdash; for free.</p>
         <div class="reveal">
             <a href="contact.html" class="btn"><span>Get in touch</span></a>
         </div>
@@ -286,7 +274,7 @@
     <footer>
         <div class="footer-links">
             <a href="index.html">Home</a>
-            <a href="offers.html">Offers</a>
+            <a href="studio.html">Studio</a>
             <a href="pricing.html">Pricing</a>
             <a href="contact.html">Contact</a>
         </div>
@@ -294,5 +282,34 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+    (function() {
+        const GAP = 2;
+        function layoutMasonry(container) {
+            const items = container.querySelectorAll('.masonry-item');
+            if (!items.length) return;
+            const cols = window.innerWidth >= 1024 ? 3 : 2;
+            const containerW = container.offsetWidth;
+            const colW = (containerW - GAP * (cols - 1)) / cols;
+            const colHeights = new Array(cols).fill(0);
+            items.forEach(item => {
+                const col = colHeights.indexOf(Math.min(...colHeights));
+                item.style.width = colW + 'px';
+                item.style.left = col * (colW + GAP) + 'px';
+                item.style.top = colHeights[col] + 'px';
+                colHeights[col] += item.offsetHeight + GAP;
+            });
+            container.style.height = Math.max(...colHeights) + 'px';
+        }
+        function layoutAll() { document.querySelectorAll('.masonry').forEach(layoutMasonry); }
+        const images = document.querySelectorAll('.masonry-item img');
+        let loaded = 0;
+        images.forEach(img => {
+            if (img.complete) { loaded++; } else { img.addEventListener('load', () => { loaded++; if (loaded >= images.length) layoutAll(); }); }
+        });
+        if (loaded >= images.length) layoutAll();
+        window.addEventListener('resize', layoutAll);
+    })();
+    </script>
 </body>
 </html>
