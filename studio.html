@@ -692,6 +692,13 @@
                     offerSection.classList.remove('mood-active');
                 }
 
+                // Scroll to top of the offer tabs
+                const tabs = document.querySelector('.offer-tabs');
+                if (tabs) {
+                    const offset = tabs.getBoundingClientRect().top + window.scrollY - 60;
+                    window.scrollTo({ top: offset, behavior: 'smooth' });
+                }
+
                 // Re-layout masonry in new panel
                 setTimeout(() => layoutAll(), 50);
             });
@@ -785,8 +792,7 @@
             interval = setInterval(next, 4000);
         }
 
-        slider.addEventListener('mouseenter', () => clearInterval(interval));
-        slider.addEventListener('mouseleave', startAuto);
+        // Slider continues even on hover — no pause
 
         startAuto();
     })();
