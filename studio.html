@@ -692,11 +692,18 @@
                     offerSection.classList.remove('mood-active');
                 }
 
-                // Scroll to top of the offer tabs
-                const tabs = document.querySelector('.offer-tabs');
-                if (tabs) {
-                    const offset = tabs.getBoundingClientRect().top + window.scrollY - 60;
-                    window.scrollTo({ top: offset, behavior: 'smooth' });
+                // Scroll so tabs + panel intro are visible
+                const tabsEl = document.querySelector('.offer-tabs');
+                if (tabsEl) {
+                    // Get the non-sticky origin: the offer-layout container top
+                    const layout = document.querySelector('.offer-layout');
+                    const layoutTop = layout.getBoundingClientRect().top + window.scrollY;
+                    // Offset to leave a small gap above the tabs
+                    const scrollTarget = layoutTop - 20;
+                    // Only scroll if we need to move (up or down)
+                    if (Math.abs(window.scrollY - scrollTarget) > 50) {
+                        window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
+                    }
                 }
 
                 // Re-layout masonry in new panel
