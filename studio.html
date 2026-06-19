@@ -235,56 +235,15 @@
             margin-bottom: 16px;
         }
 
-        .mood-slider {
-            position: relative;
-            overflow: hidden;
+        .mood-masonry {
             margin-bottom: 72px;
-            border-radius: 3px;
         }
-        .mood-slider-track {
-            display: flex;
-            transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        .mood-masonry .masonry-item {
+            background: #333;
         }
-        .mood-slide {
-            min-width: 100%;
-            position: relative;
-        }
-        .mood-slide img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            display: block;
-        }
-        .mood-slide-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 16px 20px;
-            font-size: 9px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: rgba(245, 241, 229, 0.7);
-            background: linear-gradient(transparent, rgba(26, 26, 26, 0.8));
-        }
-        .mood-slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 16px;
-        }
-        .mood-slider-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #555;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .mood-slider-dot.active {
-            background: #F5F1E5;
+        .mood-masonry .masonry-item-label {
+            background: rgba(26, 26, 26, 0.85);
+            color: #9A9590;
         }
 
         .mood-features {
@@ -565,30 +524,27 @@
                             <p>Beyond product pages. We create aspirational, atmospheric visuals that elevate your brand &mdash; campaign imagery, social content, lookbook shots, seasonal storytelling. The kind of photos that make people feel something.</p>
                         </div>
 
-                        <div class="mood-slider">
-                            <div class="mood-slider-track">
-                                <div class="mood-slide">
-                                    <img src="img/immersive/mood-poolside-shirt.jpg" alt="Man by the pool in printed shirt — editorial mood shot">
-                                    <div class="mood-slide-caption">Poolside editorial</div>
-                                </div>
-                                <div class="mood-slide">
-                                    <img src="img/immersive/mood-poolside-polo.jpg" alt="Man lounging poolside in yellow polo — lifestyle mood shot">
-                                    <div class="mood-slide-caption">Lifestyle &amp; atmosphere</div>
-                                </div>
-                                <div class="mood-slide">
-                                    <img src="img/immersive/mood-zenith-lounger.jpg" alt="Overhead view of man relaxing on poolside lounger — zenith editorial">
-                                    <div class="mood-slide-caption">Creative angles</div>
-                                </div>
-                                <div class="mood-slide">
-                                    <img src="img/immersive/mood-swim-reflection.jpg" alt="Swim shorts with pool reflection — detail editorial shot">
-                                    <div class="mood-slide-caption">Detail &amp; texture</div>
-                                </div>
-                                <div class="mood-slide">
-                                    <img src="img/immersive/mood-poolside-dip.jpg" alt="Man sitting at pool edge in polo — candid editorial">
-                                    <div class="mood-slide-caption">Candid storytelling</div>
-                                </div>
+                        <div class="masonry mood-masonry">
+                            <div class="masonry-item r-34">
+                                <img src="img/immersive/mood-poolside-shirt.jpg" alt="Man by the pool in printed shirt — editorial mood shot">
+                                <div class="masonry-item-label">Poolside editorial</div>
                             </div>
-                            <div class="mood-slider-dots"></div>
+                            <div class="masonry-item r-45">
+                                <img src="img/immersive/mood-poolside-polo.jpg" alt="Man lounging poolside in yellow polo — lifestyle mood shot">
+                                <div class="masonry-item-label">Lifestyle &amp; atmosphere</div>
+                            </div>
+                            <div class="masonry-item r-sq">
+                                <img src="img/immersive/mood-zenith-lounger.jpg" alt="Overhead view of man relaxing on poolside lounger — zenith editorial">
+                                <div class="masonry-item-label">Creative angles</div>
+                            </div>
+                            <div class="masonry-item r-45">
+                                <img src="img/immersive/mood-swim-reflection.jpg" alt="Swim shorts with pool reflection — detail editorial shot">
+                                <div class="masonry-item-label">Detail &amp; texture</div>
+                            </div>
+                            <div class="masonry-item r-34">
+                                <img src="img/immersive/mood-poolside-dip.jpg" alt="Man sitting at pool edge in polo — candid editorial">
+                                <div class="masonry-item-label">Candid storytelling</div>
+                            </div>
                         </div>
 
                         <div class="mood-features">
@@ -744,43 +700,6 @@
         window.addEventListener('resize', layoutAll);
     })();
 
-    // Mood slider
-    (function() {
-        const slider = document.querySelector('.mood-slider');
-        if (!slider) return;
-        const track = slider.querySelector('.mood-slider-track');
-        const slides = slider.querySelectorAll('.mood-slide');
-        const dotsContainer = slider.querySelector('.mood-slider-dots');
-        let current = 0;
-        let interval;
-
-        slides.forEach((_, i) => {
-            const dot = document.createElement('button');
-            dot.className = 'mood-slider-dot' + (i === 0 ? ' active' : '');
-            dot.addEventListener('click', () => goTo(i));
-            dotsContainer.appendChild(dot);
-        });
-
-        function goTo(index) {
-            current = index;
-            track.style.transform = 'translateX(-' + (current * 100) + '%)';
-            dotsContainer.querySelectorAll('.mood-slider-dot').forEach((d, i) => {
-                d.classList.toggle('active', i === current);
-            });
-        }
-
-        function next() {
-            goTo((current + 1) % slides.length);
-        }
-
-        function startAuto() {
-            interval = setInterval(next, 4000);
-        }
-
-        // Slider continues even on hover — no pause
-
-        startAuto();
-    })();
     </script>
 </body>
 </html>
