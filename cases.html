@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pikbloom — Cases</title>
+    <meta name="description" content="Real results for real brands. See how Pikbloom transforms product photos into premium studio-quality visuals.">
+    <link rel="icon" type="image/jpeg" href="Favicon.jpg">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .masonry { position: relative; }
+        .masonry-item { position: absolute; overflow: hidden; background: #ECEAE4; border-radius: 3px; }
+        .masonry-item img { width: 100%; display: block; object-fit: cover; transition: transform 0.6s ease; }
+        .masonry-item:hover img { transform: scale(1.03); }
+        .masonry-item.r-sq img { aspect-ratio: 1 / 1; }
+        .masonry-item.r-34 img { aspect-ratio: 3 / 4; }
+        .masonry-item.r-45 img { aspect-ratio: 4 / 5; }
+        .masonry-item-label {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 10px 12px; font-size: 9px; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--text-light);
+            background: rgba(245, 241, 229, 0.92);
+            transform: translateY(100%); transition: transform 0.3s;
+        }
+        .masonry-item:hover .masonry-item-label { transform: translateY(0); }
+        @media (hover: none) { .masonry-item .masonry-item-label { display: none; } }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="index.html" class="nav-logo">Pikbloom</a>
+        <button class="nav-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="studio.html">Studio</a></li>
+            <li><a href="cases.html">Cases</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html" class="btn btn-small"><span>Get a quote</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" style="min-height: auto; padding: 160px 0 80px;">
+        <div class="container">
+            <div class="hero-content" style="max-width: 640px;">
+                <div class="label">Cases</div>
+                <h1>Real products. Real results.</h1>
+                <p class="large" style="color: var(--text-light);">
+                    A selection of projects we've delivered. Packshots, model shots, and editorial visuals &mdash; created from simple product photos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CASES GRID -->
+    <section>
+        <div class="container">
+            <div class="section-label reveal">Our work</div>
+            <h2 class="reveal mb-l">From product photo to studio visual.</h2>
+
+            <div class="masonry reveal">
+                <div class="masonry-item r-34">
+                    <img src="img/showcase/packshot/bag-cognac.jpg" alt="Case — Leather bag packshot">
+                    <div class="masonry-item-label">Bags &mdash; Packshot</div>
+                </div>
+                <div class="masonry-item r-45">
+                    <img src="img/showcase/model/model-bag-cognac.jpg" alt="Case — Model wearing leather bag">
+                    <div class="masonry-item-label">Bags &mdash; Model shot</div>
+                </div>
+                <div class="masonry-item r-sq">
+                    <img src="img/showcase/packshot/bracelet-gold.jpg" alt="Case — Gold bracelet packshot">
+                    <div class="masonry-item-label">Jewelry &mdash; Packshot</div>
+                </div>
+                <div class="masonry-item r-34">
+                    <img src="img/showcase/model/model-sandal-nude.jpg" alt="Case — Model wearing sandals">
+                    <div class="masonry-item-label">Shoes &mdash; Model shot</div>
+                </div>
+                <div class="masonry-item r-45">
+                    <img src="img/showcase/packshot/shoe-pump.jpg" alt="Case — Pump packshot">
+                    <div class="masonry-item-label">Shoes &mdash; Packshot</div>
+                </div>
+                <div class="masonry-item r-sq">
+                    <img src="img/showcase/model/model-bracelet-gold.jpg" alt="Case — Model wearing bracelet">
+                    <div class="masonry-item-label">Jewelry &mdash; Model shot</div>
+                </div>
+                <div class="masonry-item r-34">
+                    <img src="img/showcase/packshot/bag-tote.jpg" alt="Case — Tote bag packshot">
+                    <div class="masonry-item-label">Bags &mdash; Packshot</div>
+                </div>
+                <div class="masonry-item r-45">
+                    <img src="img/showcase/model/model-bag-cognac-closeup.jpg" alt="Case — Bag close-up on model">
+                    <div class="masonry-item-label">Bags &mdash; Close-up</div>
+                </div>
+                <div class="masonry-item r-34">
+                    <img src="img/showcase/packshot/sandal-nude.jpg" alt="Case — Nude sandal packshot">
+                    <div class="masonry-item-label">Shoes &mdash; Packshot</div>
+                </div>
+                <div class="masonry-item r-sq">
+                    <img src="img/showcase/packshot/ring-signet-marble.jpg" alt="Case — Gold ring on marble">
+                    <div class="masonry-item-label">Jewelry &mdash; Packshot</div>
+                </div>
+                <div class="masonry-item r-45">
+                    <img src="img/showcase/model/model-sandal-seated.jpg" alt="Case — Model seated with sandals">
+                    <div class="masonry-item-label">Shoes &mdash; Model shot</div>
+                </div>
+                <div class="masonry-item r-34">
+                    <img src="img/showcase/packshot/shoe-chelsea.jpg" alt="Case — Chelsea boot packshot">
+                    <div class="masonry-item-label">Shoes &mdash; Packshot</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <h2 class="reveal">Want to see your products here?</h2>
+        <p class="reveal">Send us a product photo. We'll create a sample visual &mdash; free, no commitment.</p>
+        <div class="reveal">
+            <a href="contact.html" class="btn"><span>Get in touch</span></a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="studio.html">Studio</a>
+            <a href="cases.html">Cases</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div>Pikbloom &mdash; 2026</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+    (function() {
+        const GAP = 2;
+        function layoutMasonry(container) {
+            const items = container.querySelectorAll('.masonry-item');
+            if (!items.length) return;
+            const cols = window.innerWidth >= 1024 ? 3 : 2;
+            const containerW = container.offsetWidth;
+            const colW = (containerW - GAP * (cols - 1)) / cols;
+            const colHeights = new Array(cols).fill(0);
+            items.forEach(item => {
+                const col = colHeights.indexOf(Math.min(...colHeights));
+                item.style.width = colW + 'px';
+                item.style.left = col * (colW + GAP) + 'px';
+                item.style.top = colHeights[col] + 'px';
+                colHeights[col] += item.offsetHeight + GAP;
+            });
+            container.style.height = Math.max(...colHeights) + 'px';
+        }
+        function layoutAll() { document.querySelectorAll('.masonry').forEach(layoutMasonry); }
+        const images = document.querySelectorAll('.masonry-item img');
+        let loaded = 0;
+        images.forEach(img => {
+            if (img.complete) { loaded++; } else { img.addEventListener('load', () => { loaded++; if (loaded >= images.length) layoutAll(); }); }
+        });
+        if (loaded >= images.length) layoutAll();
+        window.addEventListener('resize', layoutAll);
+    })();
+    </script>
+</body>
+</html>
