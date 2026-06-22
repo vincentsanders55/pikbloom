@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pikbloom — Sample: B-Shirt</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/jpeg" href="../Favicon.jpg">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* ---- CASE STUDY PAGE ---- */
+
+        .case-hero {
+            padding: 160px 0 60px;
+        }
+        .case-hero .label {
+            margin-bottom: 16px;
+        }
+        .case-hero h1 {
+            font-size: clamp(22px, 4vw, 32px);
+            line-height: 1.3;
+            margin-bottom: 16px;
+            max-width: 700px;
+        }
+        .case-hero p {
+            color: var(--text-light);
+            font-size: 13px;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        /* Case meta */
+        .case-meta {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--line);
+        }
+        .case-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .case-meta-label {
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-light);
+        }
+        .case-meta-value {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        /* Section intro */
+        .case-intro {
+            max-width: 600px;
+            margin-bottom: 48px;
+        }
+        .case-intro h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .case-intro p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Masonry */
+        .masonry {
+            position: relative;
+        }
+        .masonry-item {
+            position: absolute;
+            overflow: hidden;
+            background: #ECEAE4;
+            border-radius: 3px;
+        }
+        .masonry-item img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .masonry-item:hover img {
+            transform: scale(1.03);
+        }
+        .masonry-item.r-sq img { aspect-ratio: 1 / 1; }
+        .masonry-item.r-34 img { aspect-ratio: 3 / 4; }
+        .masonry-item.r-45 img { aspect-ratio: 4 / 5; }
+
+        .masonry-item-label {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 10px 12px;
+            font-size: 9px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            background: rgba(245, 241, 229, 0.92);
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        .masonry-item:hover .masonry-item-label {
+            transform: translateY(0);
+        }
+        @media (hover: none) {
+            .masonry-item .masonry-item-label { display: none; }
+        }
+
+        /* Section divider between products */
+        .product-divider {
+            margin: 64px 0 48px;
+            padding-top: 48px;
+            border-top: 1px solid var(--line);
+        }
+
+        /* Case footer CTA */
+        .case-cta {
+            margin-top: 72px;
+            padding: 48px 0;
+            border-top: 1px solid var(--line);
+            text-align: center;
+        }
+        .case-cta h2 {
+            font-size: clamp(18px, 3vw, 24px);
+            margin-bottom: 12px;
+        }
+        .case-cta p {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="../index.html" class="nav-logo">Pikbloom</a>
+        <button class="nav-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../studio.html">Studio</a></li>
+            <li><a href="../cases.html">Cases</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../contact.html" class="btn btn-small"><span>Get a quote</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="case-hero">
+        <div class="container">
+            <div class="label reveal">Sample</div>
+            <h1 class="reveal">B-Shirt &mdash; E-shop visuals and street-style shots, straight from your packshots.</h1>
+            <p class="reveal">
+                We took two products from your collection &mdash; the "Donald Trompe Le Monde" tee and the blue-striped dress shirt &mdash; and created a full set of e-shop and lifestyle visuals. Multiple angles, close-up details, and natural street photography in Brussels. All from your existing product photos.
+            </p>
+            <div class="case-meta reveal">
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Client</span>
+                    <span class="case-meta-value">B-Shirt</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Type</span>
+                    <span class="case-meta-value">E-shop + Lifestyle</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Products</span>
+                    <span class="case-meta-value">2 items</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Visuals</span>
+                    <span class="case-meta-value">7 images</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Turnaround</span>
+                    <span class="case-meta-value">Same day</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- PRODUCT 1: DONALD TEE -->
+    <section>
+        <div class="container">
+            <div class="case-intro reveal">
+                <h2>T-shirt "Donald Trompe Le Monde"</h2>
+                <p>E-shop product shots on a clean studio background. Three framings &mdash; american front view, waist-up back showing the signature graphic, bust close-up &mdash; plus an extreme detail shot of the back print. Same model, consistent look across all angles.</p>
+            </div>
+
+            <div class="masonry reveal" id="masonry-donald">
+                <div class="masonry-item r-45">
+                    <img src="../img/cases/bshirt/bshirt-donald-eshop-v2-01-american-front.jpg" alt="B-Shirt Donald Trompe Le Monde — American shot front">
+                    <div class="masonry-item-label">Donald Tee &mdash; American front</div>
+                </div>
+                <div class="masonry-item r-45">
+                    <img src="../img/cases/bshirt/bshirt-donald-eshop-v2-02-waist-back.jpg" alt="B-Shirt Donald Trompe Le Monde — Waist-up back view">
+                    <div class="masonry-item-label">Donald Tee &mdash; Back print</div>
+                </div>
+                <div class="masonry-item r-45">
+                    <img src="../img/cases/bshirt/bshirt-donald-eshop-v2-03-bust-3quarter.jpg" alt="B-Shirt Donald Trompe Le Monde — Bust three-quarter">
+                    <div class="masonry-item-label">Donald Tee &mdash; Bust 3/4</div>
+                </div>
+                <div class="masonry-item r-45">
+                    <img src="../img/cases/bshirt/bshirt-donald-eshop-v2-04-closeup-backprint.jpg" alt="B-Shirt Donald Trompe Le Monde — Close-up back print detail">
+                    <div class="masonry-item-label">Donald Tee &mdash; Print close-up</div>
+                </div>
+            </div>
+
+            <!-- PRODUCT 2: CHEMISE LIGNEE -->
+            <div class="product-divider"></div>
+
+            <div class="case-intro reveal">
+                <h2>Chemise lign&eacute;e bleu ciel</h2>
+                <p>Lifestyle street-style shots in Brussels. Natural midday light, real-world settings &mdash; crossing a street, sitting at a caf&eacute; terrace, and an extreme close-up on the signature embroidered frites logo. Three angles, one story.</p>
+            </div>
+
+            <div class="masonry reveal" id="masonry-chemise">
+                <div class="masonry-item r-45">
+                    <img src="../img/cases/bshirt/bshirt-chemise-lignee-01-fullbody-crosswalk.jpg" alt="B-Shirt Chemise lignée — Full body at crosswalk Brussels">
+                    <div class="masonry-item-label">Chemise lign&eacute;e &mdash; Crosswalk</div>
+                </div>
+                <div class="masonry-item r-45">
+                    <img src="../img/cases/bshirt/bshirt-chemise-lignee-02-waist-cafe.jpg" alt="B-Shirt Chemise lignée — Waist-up at Brussels café">
+                    <div class="masonry-item-label">Chemise lign&eacute;e &mdash; Caf&eacute; terrace</div>
+                </div>
+                <div class="masonry-item r-45">
+                    <img src="../img/cases/bshirt/bshirt-chemise-lignee-03-closeup-broderie.jpg" alt="B-Shirt Chemise lignée — Close-up embroidered frites logo">
+                    <div class="masonry-item-label">Chemise lign&eacute;e &mdash; Frites detail</div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="case-cta reveal">
+                <h2>Want this for your full collection?</h2>
+                <p>Seven visuals, two products, one session &mdash; delivered the same day. From studio e-shop shots to street-style lifestyle, we adapt to your brand's universe. Let's scale this to your entire catalogue.</p>
+                <a href="../contact.html" class="btn"><span>Let's talk</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="../index.html">Home</a>
+            <a href="../studio.html">Studio</a>
+            <a href="../cases.html">Cases</a>
+            <a href="../contact.html">Contact</a>
+        </div>
+        <div>Pikbloom &mdash; 2026</div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+    (function() {
+        const GAP = 2;
+        function layoutMasonry(container) {
+            const items = container.querySelectorAll('.masonry-item');
+            if (!items.length) return;
+            const cols = window.innerWidth >= 1024 ? 3 : 2;
+            const containerW = container.offsetWidth;
+            const colW = (containerW - GAP * (cols - 1)) / cols;
+            const colHeights = new Array(cols).fill(0);
+            items.forEach(item => {
+                const col = colHeights.indexOf(Math.min(...colHeights));
+                item.style.width = colW + 'px';
+                item.style.left = col * (colW + GAP) + 'px';
+                item.style.top = colHeights[col] + 'px';
+                colHeights[col] += item.offsetHeight + GAP;
+            });
+            container.style.height = Math.max(...colHeights) + 'px';
+        }
+        function layoutAll() { document.querySelectorAll('.masonry').forEach(layoutMasonry); }
+        const images = document.querySelectorAll('.masonry-item img');
+        let loaded = 0;
+        const total = images.length;
+        images.forEach(img => {
+            if (img.complete) { loaded++; } else { img.addEventListener('load', () => { loaded++; if (loaded >= total) layoutAll(); }); }
+        });
+        if (loaded >= total) layoutAll();
+        window.addEventListener('resize', layoutAll);
+    })();
+    </script>
+</body>
+</html>
